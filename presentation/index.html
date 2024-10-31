@@ -113,75 +113,152 @@
      <section>
         <h2>Objective</h2>
         <p>
-            <i>Provide all the necessary<b>the outbound call</b> process at the telecom company (any service providing company).</i>
+            <ul>
+                <li>Docker: intuition</li>
+                <li>Schema Design</li>
+                <li>Data Generation</li>
+                <li>Data Ingestion</li>
+
+            </ul>
         </p>
      </section>
     
      <!-- Slide 4 -->
      <section>
-        <h2>Scope</h2>
-        <small>
-            <ul>
-                <li class="fragment" style="color: red;">Customer Analytics</li>
-                <ul>
-                    <li>integrate machine learning models and rule-based segmentation for targeting </li>
-                </ul>
-                <li class="fragment" style="color: red;">Data and Insights</li>
-                <ul>
-                    <li>implement centralized campaign management, call outcomes recording, and post-analysis</li>
-                </ul>
-                <li class="fragment" style="color: red;">Automation</li>
-                <ul>
-                    <li>eliminate manual file sharing to prevent information loss between departments.</li>
-                </ul>
-            </ul>
-        </small>
+        <h2>Dockerized Environment: 1</h2>
+        <img class="plain" src="imgs/docker_1.jpg" alt="">
         
      </section>
 
   
     <!-- Slide 5 -->
     <section>
-    <h2>Previous State</h2>
-    <small>
-        <ul>
-            <li class="fragment">Outbound call process relied on manual workflows</li>
-            <li class="fragment">Fragmented data exchanges between <span class="fragment", style="color: red;">call center,</span> <span class="fragment", style="color: red;">marketing,</span> <span class="fragment", style="color: red;">and CRM systems,</span></li>
-            <li class="fragment">Inefficiencies due to file-based sharing prone to errors and information loss.</li>
-            <li class="fragment">Limited or outdated data leading to suboptimal targeting and customer engagement</li>
-        </ul>
-    </small>
+        <h2>Dockerized Environment: 2</h2>
+        <img class="plain" src="imgs/docker_2.jpg" alt="">
     
     </section>
 
      <!-- Slide 5 -->
      <section>
-        <h2>Previous State</h2>
-        <img class="plain" src="img/was.jpg" alt="">
+        <h2>Dockerized Environment: 3</h2>
+        <img class="plain" src="imgs/docker_3.jpg" alt="">
      </section>
      <!-- Slide 6 -->
     <section>
-        <small>Lack of synchronization between departments and no unified platform for <b>managing campaigns, call outcomes, and analysis.</b></small>
+        <h2>Dockerized Environment: 4</h2>
+        <img class="plain" src="imgs/docker_4.jpg" alt="">
     </section>
     
     <!-- Slide 7 -->
     <section>
-        <h2>Initiative</h2>
-        <img class="plain" src="img/Challenge.jpg" alt="">
+        <h2>Dockerized Environment: 5</h2>
+        <img class="plain" src="imgs/docker_5.jpg" alt="">
         
     </section>
 
     <section>
-        <h2>Solution</h2>
-        <img class="plain" src="img/Architecture.jpg" alt="">
+        <h2>Dockerized Environment: We Need</h2>
+        <img class="plain" src="imgs/docker_6.jpg" alt="">
         
     </section>
+
+    <section>
+        <h2>For Today...</h2>
+        <img class="plain" src="imgs/docker_0.jpg" alt="">
+        
+    </section>
+
+    <section>
+        <h2>Docker files</h2>
+        <pre class="yaml">
+            <code>
+                FROM python:3.10-slim-bullseye
+
+                RUN apt-get update && apt-get install -y \
+                    build-essential libpq-dev libfreetype6-dev libpng-dev libjpeg-dev \
+                    libblas-dev liblapack-dev gfortran \
+                    && rm -rf /var/lib/apt/lists/*
+
+                # Set working directory
+                WORKDIR /etl
+
+                # Copy requirements file and install dependencies
+                COPY requirements.txt requirements.txt 
+                RUN pip3 install --upgrade pip
+                RUN pip3 install -r requirements.txt
+
+                # Copy the rest of the application code
+                COPY . .
+
+                # Expose port 3000
+                EXPOSE 3000
+
+                # Command to run the python file
+                CMD ["python", "etl.py"]
+            </code>
+
+        </pre>
+        
+    </section>
+
+    <section>
+        <h2>Docker-Compose</h2>
+        
+        <pre class="yaml"><code>		
+            services:
+                db:
+                    container_name: postgresql_db
+                    image: postgres
+                    restart: always
+                    ports:
+                    - 5432:5432
+                    environment: 
+                    - POSTGRES_USER=${DB_USER}
+                    - POSTGRES_PASSWORD=${DB_PASSWORD}
+                    - POSTGRES_DB=${DB_NAME}
+                    volumes:
+                    - ./postgres_data:/var/lib/postgresql/data #persisting data                           
+                pgadmin:  
+                    container_name: pgadmin
+                    image: dpage/pgadmin4
+                    environment:
+                    - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+                    - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+                    ports:
+                    - 5050:80 # for local browser (80 is the default port of the browsed)
+                    volumes:
+                    - ./pgadmin_data:/var/lib/pgadmin  # Persisting pgAdmin configuration and sessions
+                    depends_on: 
+                    - db
+                etl:
+                    container_name: etl
+                    build: ./etl
+                    ports:
+                    - 3000:3000
+                    volumes:
+                        - ./etl:/etl
+                    depends_on: 
+                    - db
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Execution</h2>
+
+        <pre class="python"><code>		
+                    docker-compose up
+        </code></pre>
+        
+        
+    </section>
+
+
 
 </section>   
  <!-- Slide  -->
 
  <section>
-    <section>Team</section>
+    <section>ETL</section>
 
     <section>
         <small>
