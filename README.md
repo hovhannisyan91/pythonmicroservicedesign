@@ -38,7 +38,7 @@ Before running this setup, ensure Docker and Docker Compose are installed on you
     - username: admin@admin.com 
     - password: admin
     - When running for the first time, you must create a server. Configure it as shown in the below image (Password is blurred it should be `password`.)
-    ![Server Setup](presentation/imgs/pgadmin_setup.png)
+    ![Server Setup](docs/imgs/pgadmin_setup.png)
 
 ### Environment Variables
 
@@ -63,7 +63,7 @@ PGADMIN_PASSWORD=<your_pgadmin_password>
 
 We will try to create below schema:
 
-![Star Schema](presentation/imgs/star_schema.png)
+![Star Schema](docs/imgs/star_schema.png)
 
 ### ETL
 
