@@ -2,12 +2,12 @@
 from models import *
 
 
-import time
+# import time
 
-# Pause code execution for 10 seconds
-print("Pausing for 20 seconds...")
-time.sleep(20)
-print("Resuming execution.")
+# # Pause code execution for 10 seconds
+# print("Pausing for 20 seconds...")
+# time.sleep(60)
+# print("Resuming execution.")
 
 
 from database import engine, Base
