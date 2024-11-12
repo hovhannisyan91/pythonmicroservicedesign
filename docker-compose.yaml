@@ -33,7 +33,9 @@ services:
 
   etl:
     container_name: etl
-    build: ./etl
+    build:
+      context: ./etl
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
@@ -43,3 +45,16 @@ services:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
+  web:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn api.main:app --host 0.0.0.0'
+    volumes:
+      - .:/api
+    ports:
+      - 8008:8000
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:password@db:5432/demodb
+    depends_on:
+      - db
