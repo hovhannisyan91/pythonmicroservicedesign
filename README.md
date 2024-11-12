@@ -82,4 +82,4 @@ By running `etl.py` following objects will be created:
 
 In this folder you can find the codes that connects endpoints with the DB you can insert, delete, updated, and check employee with there id's.
 
-To access the FastApi endpoints [http://localhost:8008](http://localhost:8008)
+To access the FastApi endpoints [http://localhost:8008](http://localhost:8008/docs)
