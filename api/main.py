@@ -1,6 +1,6 @@
-from api.models import EmployeeDB, CustomerDB, ProductDB
-from api.schema import Employee, EmployeeCreate
-from api.database import get_db
+from models import EmployeeDB, CustomerDB, ProductDB
+from schema import Employee, EmployeeCreate
+from database import get_db
 
 
 
