@@ -57,7 +57,7 @@ def create_employee(first_name: str, last_name: str, email: str, salary: int) ->
 
 def update_salary(employee_id: int, new_salary: int) -> dict:
     """
-    Update an existing employee's salary.
+    Update an existing employee's salary by sending the full employee payload.
     
     Parameters:
     - employee_id (int): The ID of the employee whose salary will be updated.
@@ -66,14 +66,31 @@ def update_salary(employee_id: int, new_salary: int) -> dict:
     Returns:
     - dict: Updated employee details if successful or an error message if failed.
     """
-    payload = {"salary": new_salary}
+    # Step 1: Get the current details of the employee
+    employee = get_employee_by_id(employee_id)
+    if not employee:
+        st.error("Employee not found, cannot update salary.")
+        return None
+    
+    # Step 2: Prepare the full payload with the updated salary
+    payload = {
+        "first_name": employee["first_name"],
+        "last_name": employee["last_name"],
+        "email": employee["email"],
+        "salary": new_salary  # Update the salary here
+    }
+
+    # Step 3: Send PUT request with the complete payload
     response = requests.put(f"{api_url}/employees/{employee_id}", json=payload)
+    
     if response.status_code == 200:
         return response.json()
     else:
         st.error("Failed to update salary.")
         return None
 
+
+    
 def delete_employee(employee_id: int) -> dict:
     """
     Delete an employee record by ID.
