@@ -1,5 +1,5 @@
 # Loading modules and packages
-from models import *
+from etl.Database.models import *
 
 
 # import time
@@ -10,11 +10,11 @@ from models import *
 # print("Resuming execution.")
 
 
-from database import engine, Base
+from etl.Database.database import engine, Base
 
 
 
-from data_generator import (
+from etl.Database.data_generator import (
     generate_customer,
     generate_product,
     generate_orders,
