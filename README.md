@@ -1,5 +1,9 @@
 # Dockerized ETL, PostgreSQL, and pgAdmin Setup
 
+## Presentation 
+
+**Follow to [this](https://hovhannisyan91.github.io/pythonmicroservicedesign/) link.**
+
 ## Installation
 
 
@@ -14,6 +18,57 @@ Before getting started, ensure you have the following prerequisites installed:
    ```bash
    docker-compose up --build
    ```
+
+## Access the Application
+
+After running `docker-compose up --build`, you can access each component of the application at the following URLs:
+
+- **Streamlit Frontend**: [http://localhost:8501](http://localhost:8501)  
+  The main interface for managing employees, built with Streamlit. Use this to add, view, update, and delete employee records.
+
+- **FastAPI Backend**: [http://localhost:8008](http://localhost:8008)  
+  The backend API where requests are processed. You can use tools like [Swagger UI](http://localhost:8008/docs) (provided by FastAPI) to explore the API endpoints and their details.
+
+- **PgAdmin** (optional): [http://localhost:5050](http://localhost:5050)  
+  A graphical tool for PostgreSQL, which allows you to view and manage the database. Login using the credentials set in the `.env` file:
+  
+  - **Email**: Value of `PGADMIN_EMAIL` in your `.env` file
+  - **Password**: Value of `PGADMIN_PASSWORD` in your `.env` file
+
+> Note: Ensure Docker is running, and all environment variables in `.env` are correctly configured before accessing these URLs.
+
+## Project structure
+
+## Project Structure
+
+Here’s an overview of the project’s file structure:
+
+```bash
+.
+├── LICENSE
+├── README.md
+├── .env                # Environment variables
+├── docker-compose.yml  # Docker Compose configuration
+├── api                 # FastAPI backend folder
+│   ├── Dockerfile      # Dockerfile for FastAPI container
+│   ├── __init__.py     # Marks this directory as a package
+│   ├── main.py         # FastAPI main entry point
+│   ├── database.py     # Database configuration and connection setup
+│   ├── models.py       # SQLAlchemy models for database tables
+│   ├── schema.py       # Pydantic schemas for request and response validation
+│   └── requirements.txt# Backend dependencies
+├── app                 # Streamlit frontend folder
+│   ├── Dockerfile      # Dockerfile for Streamlit container
+│   ├── __init__.py
+│   ├── app.py          # Streamlit main entry point
+│   ├── pages           # Additional pages for Streamlit
+│   │   ├── page1.py
+│   │   └── page2.py
+│   └── requirements.txt# Frontend dependencies
+└── docs                # Documentation assets
+    ├── imgs            # Image assets for documentation
+    └── index.html      # Documentation home page
+```
 
 ## Docker 
 
@@ -76,6 +131,78 @@ By running `etl.py` following objects will be created:
 
 ## API
 
+
+### Features
+
+- **Add New Employee**: Enter details like first name, last name, email, department, position, and salary to add a new employee.
+- **Get Employee by ID**: Retrieve an employee’s information using their unique ID.
+- **Update Salary**: Update the salary of an existing employee by providing their ID and the new salary.
+- **Delete Employee**: Remove an employee record from the system using their ID.
+
 In this folder you can find the codes that connects endpoints with the DB you can insert, delete, updated, and check employee with there id's.
 
-To access the FastApi endpoints [http://localhost:8008](http://localhost:8008)
+### Requests
+
+- `POST /employees/: Create a new employee. Requests`
+
+- `GET /employees/{employee_id}: Retrieve employee details by ID. Requests`
+
+- `PUT /employees/{employee_id}: Update an employee’s salary by ID. Requests`
+
+- `DELETE /employees/{employee_id}: Delete an employee by ID.`
+
+## Web Application
+
+Adding another service named `app`, which is going to be responsible for the **front-edn**.
+
+
+To Open the web app visit: [here](http://localhost:8501/)
+
+
+
+### Dockerfile
+
+```Dockerfile
+# Dockerfile
+
+# pull the official docker image
+FROM python:3.10-slim-bullseye
+
+RUN apt-get update && apt-get install -y \
+    build-essential libpq-dev libfreetype6-dev libpng-dev libjpeg-dev \
+    libblas-dev liblapack-dev gfortran \
+    && rm -rf /var/lib/apt/lists/*
+
+# set work directory
+WORKDIR /app
+
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the contents of the front directory to /app in the container
+COPY . .
+
+# Expose Streamlit's default port
+EXPOSE 8501
+
+# Run the Streamlit application
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.headless=true", "--server.runOnSave=true"]
+```
+
+### Service
+
+```yaml
+  app:
+    container_name: streamlit_app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8501:8501
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+```
