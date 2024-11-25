@@ -212,5 +212,6 @@ Mkdocs it documents your code and puts it in web format.
 - `pip install 'mkdocstrings[python]'`
 
 ### How to use
-- mkdocs new . to create mkdocs.yaml and folder docs that has index.md and folder imgs.
-- To show your documentation type mkdocs serve and click on the browser connection to open it in your browser.
+
+- `mkdocs new .` to create mkdocs.yaml and folder docs that has `index.md` and folder `imgs`.
+- To show your documentation type `mkdocs serve` and click on the browser connection to open it in your browser.

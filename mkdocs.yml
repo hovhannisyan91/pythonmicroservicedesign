@@ -2,10 +2,10 @@ site_name: My Docs
 
 nav:
   - Home: index.md
-  - ETL: myapp.etl.md
-  - API: myapp.api.md
-  - APP: myapp.app.md
-  - API models: myapp.api_models.md
+  - ETL: etl.md
+  - API: api.md
+  - APP: app.md
+  - API models: api_models.md
 
 theme:
   name: material
