@@ -2,6 +2,10 @@
 
 This Demo project will show you how to use docker and docker compose to create a projects that connects multiple services together.
 
+## How it works?
+
+<a href="./presentation.html" target="_blank" rel="noopener noreferrer">End-to-End tutorial </a>
+
 ## Services
 
 * `Database` - Postgres database.
