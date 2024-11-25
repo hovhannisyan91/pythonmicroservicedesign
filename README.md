@@ -156,9 +156,7 @@ In this folder you can find the codes that connects endpoints with the DB you ca
 Adding another service named `app`, which is going to be responsible for the **front-edn**.
 
 
-To Open the web app visit: [here](http://localhost:8501/)
-
-
+To Open the web app visit: [here](http://localhost:8501/) 
 
 ### Dockerfile
 
@@ -206,3 +204,13 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.headless=true
     depends_on:
       - api
 ```
+## Mkdocs
+Mkdocs it documents your code and puts it in web format.
+
+### Prerequisites
+- `pip install mkdocs-material`
+- `pip install 'mkdocstrings[python]'`
+
+### How to use
+- mkdocs new . to create mkdocs.yaml and folder docs that has index.md and folder imgs.
+- To show your documentation type mkdocs serve and click on the browser connection to open it in your browser.

@@ -1,3 +1,18 @@
+"""
+ETL Script for Generating and Loading Data into a Database.
+
+This script generates data for employees, customers, products, orders, and sales, 
+saves the data to CSV files, and loads the CSV data into a database.
+
+Modules:
+    - etl.Database.models: Database models for the project.
+    - etl.Database.database: Database engine and base class.
+    - etl.Database.data_generator: Functions to generate data for various entities.
+    - pandas: For data manipulation and storage in CSV.
+    - loguru: For logging.
+    - random: For random number generation.
+    - glob, os: For file path and system operations.
+"""
 # Loading modules and packages
 from etl.Database.models import *
 
