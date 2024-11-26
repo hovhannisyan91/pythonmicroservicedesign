@@ -1,12 +1,8 @@
 from Database.models import EmployeeDB, CustomerDB, ProductDB
 from Database.schema import Employee, EmployeeCreate
 from Database.database import get_db
-
-
-
 from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException
-from typing import Dict
 
 app = FastAPI(title="FastAPI, Docker, and Traefik")
 
@@ -16,15 +12,17 @@ async def get_employee(employee_id: int, db: Session = Depends(get_db)):
     """
     Retrieve an employee by their unique ID.
 
-    Args:
-        employee_id (int): The unique identifier of the employee.
-        db (Session, optional): Database session provided by dependency injection.
+    **Parameters:**
+    
+    - `employee_id (int):` The unique identifier of the employee.
+    - `db (Session, optional):` Database session provided by dependency injection.
 
-    Returns:
-        Employee: The employee's details.
+    **Returns:**
+        - `Employee:` The employee's details.
 
-    Raises:
-        HTTPException: If the employee is not found, raises a 404 error.
+    **Raises:**
+
+        - `HTTPException:` If the employee is not found, raises a 404 error.
     """
     employee = db.query(EmployeeDB).filter(EmployeeDB.employee_id == employee_id).first()
     if employee is None:
@@ -37,27 +35,23 @@ async def create_employee(employee: EmployeeCreate, db: Session = Depends(get_db
     """
     Create a new employee.
 
-    Args:
-        employee (EmployeeCreate): The employee data to create.
-        db (Session, optional): Database session provided by dependency injection.
+    **Parameters:**
+    
+    - `employee (EmployeeCreate):` The employee data to create.
+    - `db (Session, optional):` Database session provided by dependency injection.
 
-    Returns:
-        Employee: The newly created employee's details.
+    **Returns:**
+        - `Employee:` The newly created employee's details.
     """
-    # Create an instance of the EmployeeDB model using the data from the EmployeeCreate schema
     db_employee = EmployeeDB(
         first_name=employee.first_name,
         last_name=employee.last_name,
         email=employee.email,
         salary=employee.salary
     )
-    
-    # Add the employee to the database session
     db.add(db_employee)
     db.commit()
-    db.refresh(db_employee)  # Refresh to get the updated employee with its auto-generated employee_id
-    
-    # Convert the ORM model (EmployeeDB) to a Pydantic model (Employee)
+    db.refresh(db_employee)
     return Employee(
         employee_id=db_employee.employee_id,
         first_name=db_employee.first_name,
@@ -72,16 +66,18 @@ async def update_employee(employee_id: int, updated_employee: EmployeeCreate, db
     """
     Update an existing employee's details.
 
-    Args:
-        employee_id (int): The unique identifier of the employee to update.
-        updated_employee (EmployeeCreate): The new employee data.
-        db (Session, optional): Database session provided by dependency injection.
+    **Parameters:**
+    
+    - `employee_id (int):` The unique identifier of the employee to update.
+    - `updated_employee (EmployeeCreate):` The new employee data.
+    - `db (Session, optional):` Database session provided by dependency injection.
 
-    Returns:
-        Employee: The updated employee's details.
+    **Returns:**
+        - `Employee:` The updated employee's details.
 
-    Raises:
-        HTTPException: If the employee is not found, raises a 404 error.
+    **Raises:**
+
+        - `HTTPException:` If the employee is not found, raises a 404 error.
     """
     employee = db.query(EmployeeDB).filter(EmployeeDB.employee_id == employee_id).first()
     if not employee:
@@ -98,15 +94,17 @@ async def delete_employee(employee_id: int, db: Session = Depends(get_db)):
     """
     Delete an employee by their unique ID.
 
-    Args:
-        employee_id (int): The unique identifier of the employee to delete.
-        db (Session, optional): Database session provided by dependency injection.
+    **Parameters:**
+    
+    - `employee_id (int):` The unique identifier of the employee to delete.
+    - `db (Session, optional):` Database session provided by dependency injection.
 
-    Returns:
-        dict: A message confirming successful deletion.
+    **Returns:**
+        - `dict:` A message confirming successful deletion.
 
-    Raises:
-        HTTPException: If the employee is not found, raises a 404 error.
+    **Raises:**
+
+        - `HTTPException:` If the employee is not found, raises a 404 error.
     """
     employee = db.query(EmployeeDB).filter(EmployeeDB.employee_id == employee_id).first()
     if not employee:
