@@ -213,5 +213,8 @@ Mkdocs it documents your code and puts it in web format.
 
 ### How to use
 
-- `mkdocs new .` to create mkdocs.yaml and folder docs that has `index.md` and folder `imgs`.
-- To show your documentation type `mkdocs serve` and click on the browser connection to open it in your browser.
+
+1. Create `docs` folder
+2. Create respective `.md ` files with proper links
+3. `mkdocs new .` to create mkdocs.yaml and folder docs that has `index.md` and folder
+4. To show your documentation type `mkdocs serve` and click on the browser connection to open it in your browser.
