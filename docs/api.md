@@ -4,6 +4,6 @@
 
 ::: myapp.api.main
 
-### Main.py
+### Models.py
 
 ::: myapp.api.database.models
