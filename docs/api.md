@@ -6,4 +6,4 @@
 
 ### Models.py
 
-::: myapp.api.database.models
+::: myapp.api.Database.models
