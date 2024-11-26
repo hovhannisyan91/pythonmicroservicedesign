@@ -16,11 +16,11 @@ def get_employee_by_id(employee_id: int) -> dict:
     """
     Fetch employee details by their ID.
     
-    Parameters:
+    **Parameters:**
     
-    - employee_id (int): The ID of the employee to retrieve.
+    - `employee_id (int):` The ID of the employee to retrieve.
 
-    Returns:
+    **Returns:**
     
     - dict: The employee's details if found, or None with an error message.
     
