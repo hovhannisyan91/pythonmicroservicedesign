@@ -17,10 +17,13 @@ def get_employee_by_id(employee_id: int) -> dict:
     Fetch employee details by their ID.
     
     Parameters:
+    
     - employee_id (int): The ID of the employee to retrieve.
 
     Returns:
+    
     - dict: The employee's details if found, or None with an error message.
+    
     """
     response = requests.get(f"{api_url}/employees/{employee_id}")
     if response.status_code == 200:
@@ -34,6 +37,7 @@ def create_employee(first_name: str, last_name: str, email: str, salary: int) ->
     Create a new employee record.
     
     Parameters:
+    
     - first_name (str): Employee's first name.
     - last_name (str): Employee's last name.
     - email (str): Employee's email address.
