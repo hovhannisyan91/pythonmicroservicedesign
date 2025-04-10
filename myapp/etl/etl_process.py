@@ -17,9 +17,9 @@ Modules:
 import pandas as pd
 from loguru import logger
 import random
-from etl.Database.models import *
-from etl.Database.database import engine, Base
-from etl.Database.data_generator import (
+from Database.models import *
+from Database.database import engine, Base
+from Database.data_generator import (
     generate_customer,
     generate_product,
     generate_orders,
@@ -115,6 +115,7 @@ base_names = [path.splitext(path.basename(file))[0] for file in files]
 # Load data from CSV files into respective tables
 for table in base_names:
     try:
+        logger.info(f"Loading data into table: {table}")
         load_csv_to_table(table, path.join("data/", f"{table}.csv"))
     except Exception as e:
         logger.error(f"Failed to ingest table {table}. Error: {e}")
