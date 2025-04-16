@@ -34,7 +34,7 @@ from os import path
 # -----------------------------------------------------
 NUMBER_OF_TRANSACTIONS = 5000
 NUMBER_OF_EMPLOYEES = 100
-NUMBER_OF_CUSTOMERS = 2000
+NUMBER_OF_CUSTOMERS = 2001
 NUMBER_OF_ORDERS = 200
 
 # -----------------------------------------------------
