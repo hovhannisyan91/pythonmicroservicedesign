@@ -34,7 +34,7 @@ from os import path
 # -----------------------------------------------------
 NUMBER_OF_TRANSACTIONS = 5000
 NUMBER_OF_EMPLOYEES = 100
-NUMBER_OF_CUSTOMERS = 2001
+NUMBER_OF_CUSTOMERS = 2000
 NUMBER_OF_ORDERS = 200
 
 # -----------------------------------------------------
@@ -100,7 +100,7 @@ def load_csv_to_table(table_name: str, csv_path: str) -> None:
         - `None`
     """
     df = pd.read_csv(csv_path)
-    df.to_sql(table_name, con=engine, if_exists="append", index=False)
+    df.to_sql(table_name, con=engine, if_exists="replace", index=False)
     logger.info(f"Loading data into table: {table_name}")
 
 # -----------------------------------------------------
