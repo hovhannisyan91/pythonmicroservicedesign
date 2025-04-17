@@ -100,7 +100,7 @@ def load_csv_to_table(table_name: str, csv_path: str) -> None:
         - `None`
     """
     df = pd.read_csv(csv_path)
-    df.to_sql(table_name, con=engine, if_exists="fail", index=False)
+    df.to_sql(table_name, con=engine, if_exists="append", index=False)
     logger.info(f"Loading data into table: {table_name}")
 
 # -----------------------------------------------------
