@@ -1,4 +1,4 @@
-# Dockerized ETL, PostgreSQL, and pgAdmin Setup
+# Dockerized ETL, PostgreSQL, pgAdmin
 
 ## Presentation 
 
@@ -6,17 +6,15 @@
 
 ## Installation
 
+
 Before getting started, ensure you have the following prerequisites installed:
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/hovhannisyan91/pythonmicroservicedesign.git
    ```
-2. Switch to the `db-setup` branch
-    ```bash
-    git checkout db-setup
-    ```
-3. Build and start the Docker containers:
+
+2. Build and start the Docker containers:
    ```bash
    docker-compose up --build
    ```
@@ -25,6 +23,10 @@ Before getting started, ensure you have the following prerequisites installed:
 
 After running `docker-compose up --build`, you can access each component of the application at the following URLs:
 
+
+- **FastAPI Backend**: [http://localhost:8008](http://localhost:8008)  
+  The backend API where requests are processed. You can use tools like [Swagger UI](http://localhost:8008/docs) (provided by FastAPI) to explore the API endpoints and their details.
+
 - **PgAdmin** (optional): [http://localhost:5050](http://localhost:5050)  
   A graphical tool for PostgreSQL, which allows you to view and manage the database. Login using the credentials set in the `.env` file:
   
@@ -32,6 +34,8 @@ After running `docker-compose up --build`, you can access each component of the 
   - **Password**: Value of `PGADMIN_PASSWORD` in your `.env` file
 
 > Note: Ensure Docker is running, and all environment variables in `.env` are correctly configured before accessing these URLs.
+
+
 
 ## Project Structure
 
@@ -43,22 +47,20 @@ Here’s an overview of the project’s file structure:
 ├── README.md
 ├── .env                # Environment variables
 ├── docker-compose.yml  # Docker Compose configuration
-├── etl                 # Streamlit frontend folder
-│   ├── Dockerfile      # Dockerfile for Streamlit container
-│   ├── __init__.py
-│   ├── etl.py          # Streamlit main entry point
-│   └── requirements.txt # etl related dependencies
+└── docs                # Documentation assets
+    ├── imgs            # Image assets for documentation
+    └── index.html      # Documentation home page
 ```
 
 ## Docker 
 
-This **branch** sets up a Docker environment with three main services:
+This repository sets up a Docker environment with three main services:
 
 1. **PostgreSQL:** for data storage
 2. **pgAdmin:** for database management and visualization
 3. **ETL:** service for Extract, Transform, Load operations using Python
 
-### Prerequisites
+## Prerequisites
 
 Before running this setup, ensure Docker and Docker Compose are installed on your system.
 
@@ -85,9 +87,9 @@ DB_USER=<your_database_user>
 DB_PASSWORD=<your_database_password>
 DB_NAME=<your_database_name>
 
-# pgAdmin configuration; SUPER USER
-PGADMIN_EMAIL=admin@admin.com
-PGADMIN_PASSWORD=admin
+# pgAdmin configuration
+PGADMIN_EMAIL=admin@admin
+PGADMIN_PASSWORD=<your_pgadmin_password>
 ```
 
 
@@ -108,32 +110,3 @@ By running `etl.py` following objects will be created:
     - sql tables 
     - the data sets will store in `data\` folder
     - the csv files will be loaded into DB
-
-### Dockerfile
-
-```Dockerfile
-FROM python:3.10-slim-bullseye
-
-RUN apt-get update && apt-get install -y \
-    build-essential libpq-dev libfreetype6-dev libpng-dev libjpeg-dev \
-    libblas-dev liblapack-dev gfortran \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set working directory
-WORKDIR /etl
-
-# Copy requirements file and install dependencies
-COPY requirements.txt . 
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
-
-# Copy the rest of the application code
-COPY . .
-
-# Expose port 3000
-EXPOSE 3000
-
-# Command to run the python file
-CMD ["python", "etl.py"]
-```
-
