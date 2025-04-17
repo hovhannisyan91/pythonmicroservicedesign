@@ -85,9 +85,9 @@ DB_USER=<your_database_user>
 DB_PASSWORD=<your_database_password>
 DB_NAME=<your_database_name>
 
-# pgAdmin configuration
-PGADMIN_EMAIL=<your_pgadmin_email>
-PGADMIN_PASSWORD=<your_pgadmin_password>
+# pgAdmin configuration; SUPER USER
+PGADMIN_EMAIL=admin@admin.com
+PGADMIN_PASSWORD=admin
 ```
 
 
