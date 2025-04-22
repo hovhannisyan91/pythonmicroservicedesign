@@ -7,12 +7,12 @@ from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
 from Database.database import Base, engine
 
-Base= declarative_base()
+# Base= declarative_base()
 
 class Employee(Base):
     __tablename__ = "employees"
 
-    employee_id = Column(Integer, primary_key=True)
+    employee_id = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String)
     last_name = Column(String)
     email = Column(String)

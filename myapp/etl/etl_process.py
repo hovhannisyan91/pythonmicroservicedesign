@@ -28,6 +28,7 @@ from Database.data_generator import (
 )
 import glob
 from os import path
+from sqlalchemy import text
 
 # -----------------------------------------------------
 # Constants
@@ -122,3 +123,20 @@ for table in base_names:
         print(f"Failed to ingest table {table}. Moving to the next!")
 
 print("Tables are populated.")
+
+# Manually reset sequences for auto-increment primary keys
+sequence_reset_queries = [
+    "SELECT setval('employees_employee_id_seq', (SELECT MAX(employee_id) FROM employees))",
+    "SELECT setval('customers_customer_id_seq', (SELECT MAX(customer_id) FROM customers))",
+    "SELECT setval('products_product_id_seq', (SELECT MAX(product_id) FROM products))",
+    "SELECT setval('orders_order_id_seq', (SELECT MAX(order_id) FROM orders))",
+    "SELECT setval('sales_transaction_id_seq', (SELECT MAX(transaction_id) FROM sales))"
+]
+
+with engine.connect() as conn:
+    for query in sequence_reset_queries:
+        try:
+            conn.execute(text(query))
+            logger.info(f"Sequence reset: {query}")
+        except Exception as e:
+            logger.warning(f"Failed to reset sequence: {query}, Error: {e}")
