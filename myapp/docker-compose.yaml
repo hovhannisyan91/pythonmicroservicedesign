@@ -57,3 +57,17 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
       - db
+
+  app:
+    container_name: streamlit_app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - 8501:8501
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
