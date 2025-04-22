@@ -1,4 +1,4 @@
-# Dockerized ETL, PostgreSQL, pgAdmin, Backend Setup
+# Dockerized ETL, PostgreSQL, pgAdmin
 
 ## Presentation 
 
@@ -47,14 +47,6 @@ Here’s an overview of the project’s file structure:
 ├── README.md
 ├── .env                # Environment variables
 ├── docker-compose.yml  # Docker Compose configuration
-├── api                 # FastAPI backend folder
-│   ├── Dockerfile      # Dockerfile for FastAPI container
-│   ├── __init__.py     # Marks this directory as a package
-│   ├── main.py         # FastAPI main entry point
-│   ├── database.py     # Database configuration and connection setup
-│   ├── models.py       # SQLAlchemy models for database tables
-│   ├── schema.py       # Pydantic schemas for request and response validation
-│   └── requirements.txt# Backend dependencies
 └── docs                # Documentation assets
     ├── imgs            # Image assets for documentation
     └── index.html      # Documentation home page
@@ -96,7 +88,7 @@ DB_PASSWORD=<your_database_password>
 DB_NAME=<your_database_name>
 
 # pgAdmin configuration
-PGADMIN_EMAIL=<your_pgadmin_email>
+PGADMIN_EMAIL=admin@admin
 PGADMIN_PASSWORD=<your_pgadmin_password>
 ```
 
@@ -118,26 +110,3 @@ By running `etl.py` following objects will be created:
     - sql tables 
     - the data sets will store in `data\` folder
     - the csv files will be loaded into DB
-
-## API
-
-
-### Features
-
-- **Add New Employee**: Enter details like first name, last name, email, department, position, and salary to add a new employee.
-- **Get Employee by ID**: Retrieve an employee’s information using their unique ID.
-- **Update Salary**: Update the salary of an existing employee by providing their ID and the new salary.
-- **Delete Employee**: Remove an employee record from the system using their ID.
-
-In this folder you can find the codes that connects endpoints with the DB you can insert, delete, updated, and check employee with there id's.
-
-### Requests
-
-- `POST /employees/: Create a new employee. Requests`
-
-- `GET /employees/{employee_id}: Retrieve employee details by ID. Requests`
-
-- `PUT /employees/{employee_id}: Update an employee’s salary by ID. Requests`
-
-- `DELETE /employees/{employee_id}: Delete an employee by ID.`
-
