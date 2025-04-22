@@ -30,20 +30,20 @@ services:
       - ./pgadmin_data:/var/lib/pgadmin  # Persisting pgAdmin configuration and sessions
     depends_on: 
       - db
-  etl:
-    container_name: etl
-    build:
-      context: ./etl
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-        - ./etl:/etl
-    depends_on: 
-      db:
-        condition: service_healthy
-    healthcheck:
-      test: "exit 0"
+  # etl:
+  #   container_name: etl
+  #   build:
+  #     context: ./etl
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #       - ./etl:/etl
+  #   depends_on: 
+  #     db:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: "exit 0"
   api:
     build:
       context: ./api
@@ -57,3 +57,17 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
       - db
+
+  app:
+    container_name: streamlit_app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+    ports:
+      - 8501:8501
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
