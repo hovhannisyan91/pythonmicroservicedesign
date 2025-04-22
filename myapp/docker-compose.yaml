@@ -31,17 +31,30 @@ services:
     depends_on: 
       - db
 
-  etl:
-    container_name: etl
+  # etl:
+  #   container_name: etl
+  #   build:
+  #     context: ./etl
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #       - ./etl:/etl
+  #   depends_on: 
+  #     db:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: "exit 0"
+  api:
     build:
-      context: ./etl
+      context: ./api
       dockerfile: Dockerfile
-    ports:
-      - 3000:3000
+    # command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn main:app --host 0.0.0.0'
     volumes:
-        - ./etl:/etl
-    depends_on: 
-      db:
-        condition: service_healthy
-    healthcheck:
-      test: "exit 0"
+      - ./api:/api
+    ports:
+      - 8008:8000
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
