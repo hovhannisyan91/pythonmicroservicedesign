@@ -205,3 +205,20 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.headless=true
     depends_on:
       - api
 ```
+
+## Mkdocs
+
+Mkdocs documents your code and puts it in html format.
+
+### Prerequisites
+
+- `pip install mkdocs-material`
+- `pip install 'mkdocstrings[python]'`
+
+### How to use
+
+
+1. Create `docs` folder
+2. Create respective `.md ` files with proper links
+3. `mkdocs new .` to create mkdocs.yaml and folder docs that has `index.md` and folder
+4. To show your documentation type `mkdocs serve` and click on the browser connection to open it in your browser.
