@@ -220,5 +220,65 @@ Mkdocs documents your code and puts it in html format.
 
 1. Create `docs` folder
 2. Create respective `.md ` files with proper links
-3. `mkdocs new .` to create mkdocs.yaml and folder docs that has `index.md` and folder
+3. `mkdocs new .` to create `mkdocs.yaml` and folder docs that has `index.md` and folder
 4. To show your documentation type `mkdocs serve` and click on the browser connection to open it in your browser.
+5. create a new folder `.github/workflows`
+6. create `ci.yaml` file
+
+#### mkdocs.yaml
+
+```yaml
+name: ci 
+on:
+  push:
+    branches:
+      - master 
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install mkdocs-material
+      - run: pip install "mkdocstrings[python]"
+      - run: pip install pillow cairosvg
+      - run: mkdocs gh-deploy --force
+```
+
+#### ci.yaml
+
+```yaml
+name: ci 
+on:
+  push:
+    branches:
+      - master 
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install mkdocs-material
+      - run: pip install "mkdocstrings[python]"
+      - run: pip install pillow cairosvg
+      - run: mkdocs gh-deploy --force
+```
