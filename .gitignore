@@ -2,7 +2,7 @@
 # Custom 
 postgres_data/
 pgadmin_data/
-
+tasks/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
