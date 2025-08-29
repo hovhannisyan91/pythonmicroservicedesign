@@ -78,9 +78,13 @@
         </script>
 
         <script>
-            function displayDate() {
+           function displayDate() {
                 const today = new Date();
-                const date = today.toDateString();
+                const options = {  year: 'numeric', month: 'long', day: 'numeric' };
+                // Use 'en-GB' for European style (day before month), but format as requested
+                let date = today.toLocaleDateString('en-GB', options);
+                // Remove the comma before the year if present
+                date = date.replace(/, (\d{4})$/, ' $1');
                 document.getElementById("current-date").innerHTML = date;
             }
         </script>
