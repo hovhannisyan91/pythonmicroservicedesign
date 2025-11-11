@@ -40,6 +40,9 @@ services:
       - 3000:3000
     volumes:
         - ./etl:/etl
+        - ./etl/requirements.txt:/etl/requirements.txt
+
+        
     depends_on: 
       db:
         condition: service_healthy
