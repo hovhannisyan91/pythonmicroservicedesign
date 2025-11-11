@@ -2,7 +2,7 @@
 
 ## Presentation 
 
-**Follow to [this](https://hovhannisyan91.github.io/pythonmicroservicedesign/) link.**
+**Follow to [this](https://hovhannisyan91.github.io/DS223_Group_Project/#/title-slide) link.**
 
 ## Installation
 
@@ -13,8 +13,15 @@ Before getting started, ensure you have the following prerequisites installed:
    ```bash
    git clone https://github.com/hovhannisyan91/pythonmicroservicedesign.git
    ```
-
-2. Build and start the Docker containers:
+2. Swtich to the `m1` directory:
+   ```bash
+   git checkout m1
+   ```
+3. Navigate to the project directory:
+   ```bash
+   cd myapp
+   ```
+3. Build and start the Docker containers:
    ```bash
    docker-compose up --build
    ```
@@ -23,11 +30,6 @@ Before getting started, ensure you have the following prerequisites installed:
 
 After running `docker-compose up --build`, you can access each component of the application at the following URLs:
 
-- **Streamlit Frontend**: [http://localhost:8501](http://localhost:8501)  
-  The main interface for managing employees, built with Streamlit. Use this to add, view, update, and delete employee records.
-
-- **FastAPI Backend**: [http://localhost:8008](http://localhost:8008)  
-  The backend API where requests are processed. You can use tools like [Swagger UI](http://localhost:8008/docs) (provided by FastAPI) to explore the API endpoints and their details.
 
 - **PgAdmin** (optional): [http://localhost:5050](http://localhost:5050)  
   A graphical tool for PostgreSQL, which allows you to view and manage the database. Login using the credentials set in the `.env` file:
@@ -36,8 +38,6 @@ After running `docker-compose up --build`, you can access each component of the 
   - **Password**: Value of `PGADMIN_PASSWORD` in your `.env` file
 
 > Note: Ensure Docker is running, and all environment variables in `.env` are correctly configured before accessing these URLs.
-
-## Project structure
 
 ## Project Structure
 
@@ -70,7 +70,7 @@ Before running this setup, ensure Docker and Docker Compose are installed on you
     - username: admin@admin.com 
     - password: admin
     - When running for the first time, you must create a server. Configure it as shown in the below image (Password is blurred it should be `password`.)
-    ![Server Setup](docs/imgs/pgadmin_setup.png)
+    ![Server Setup](docs/img/pgadmin_setup.png)
 
 ### Environment Variables
 
@@ -83,8 +83,8 @@ DB_PASSWORD=<your_database_password>
 DB_NAME=<your_database_name>
 
 # pgAdmin configuration
-PGADMIN_EMAIL=<your_pgadmin_email>
-PGADMIN_PASSWORD=<your_pgadmin_password>
+PGADMIN_EMAIL=<your_pgadmin_email> #do not change 
+PGADMIN_PASSWORD=<your_pgadmin_password> #do not change
 ```
 
 
@@ -95,7 +95,7 @@ PGADMIN_PASSWORD=<your_pgadmin_password>
 
 We will try to create below schema:
 
-![Star Schema](docs/imgs/star_schema.png)
+![Star Schema](docs/img/star_schema.png)
 
 ### ETL
 
