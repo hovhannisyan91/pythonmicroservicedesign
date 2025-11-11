@@ -17,9 +17,9 @@ Modules:
 import pandas as pd
 from loguru import logger
 import random
-from etl.Database.models import *
-from etl.Database.database import engine, Base
-from etl.Database.data_generator import (
+from Database.models import *
+from Database.database import engine, Base
+from Database.data_generator import (
     generate_customer,
     generate_product,
     generate_orders,
