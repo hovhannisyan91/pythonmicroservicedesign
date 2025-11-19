@@ -38,9 +38,6 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          setup_commands:
-            - import sys
-            - sys.path.append(".")
-
+          paths: ["."]
           rendering:
             show_source: true
