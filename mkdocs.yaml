@@ -2,7 +2,6 @@ site_name: My Docs
 
 nav:
   - Home: index.md
-  # - Presentation: index1.html
   - ETL: etl.md
   - API: api.md
   - APP: app.md
