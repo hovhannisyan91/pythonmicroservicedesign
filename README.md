@@ -14,6 +14,16 @@ This repository contains the following branches:
 - **gh-pages:** Deploying the documentation.
 - **jupyter-notebook**: Contains the Jupyter Notebook container setup.
 
+## Remote Connectore
+
+1. Install `dev container` extension in VS code. 
+2. run `docker compose up --build` to build the containers.
+3. Click on the Dev Container icon in the bottom left corner of VS code.
+4. ![alt text](image.png)
+5. Select a folder (if in `root` ../ or `app` or `api`).
+6. ![alt text](image-1.png)
+
+
 
 ## Presentation 
 
