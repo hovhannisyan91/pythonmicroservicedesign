@@ -39,5 +39,3 @@ plugins:
       handlers:
         python:
           paths: ["."]
-          rendering:
-            show_source: true
