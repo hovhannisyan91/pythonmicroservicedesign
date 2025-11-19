@@ -1,10 +1,10 @@
 """
-ETL Script for Generating and Loading Data into a Database.
+**ETL Script for Generating and Loading Data into a Database.**
 
 This script generates data for employees, customers, products, orders, and sales, 
 saves the data to CSV files, and loads the CSV data into a database.
 
-Modules:
+**Modules**
     - etl.Database.models: Database models for the project.
     - etl.Database.database: Database engine and base class.
     - etl.Database.data_generator: Functions to generate data for various entities.
