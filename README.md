@@ -61,6 +61,7 @@ Here’s an overview of the project’s file structure:
 ├── LICENSE
 ├── README.md
 ├── .github
+      # Dockerfile for FastAPI container
 ├── .env                # Environment variables
 ├── docker-compose.yml  # Docker Compose configuration
 ├── api                 # FastAPI backend folder

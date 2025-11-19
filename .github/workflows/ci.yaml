@@ -38,5 +38,5 @@ jobs:
           pip install pillow cairosvg
       - name: Build MkDocs site
         run: mkdocs build        
-      - name: Deploy MkDocs
+      - name: Deploy mkdocs
         run: mkdocs gh-deploy --force
