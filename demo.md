@@ -4,14 +4,15 @@
 
 **Product Name:** [Your Product Name]  
 **Team Number:** [Group Number]  
-**Demo Date:** May 13, 2025  
+**Demo Date:** December 11, 2025  
 
 We developed a marketing analytics platform designed to [briefly state the problem it solves, e.g., predict customer churn, optimize ad spend, etc.]. Our product integrates data modeling, API access, and a user-friendly UI to deliver actionable insights.
 
 ---
 
 ## Problem Definition
-Many businesses struggle with [state the marketing problem]. Our solution provides [short summary of value proposition].
+
+Many businesses struggle with *[state the marketing problem]*. Our solution provides *[short summary of value proposition]*.
 
 ---
 
@@ -20,6 +21,7 @@ Many businesses struggle with [state the marketing problem]. Our solution provid
 ![Your Product Schema](link_to_architecture_diagram_if_any)
 
 **Microservice Components:**
+
 - **Frontend:** Streamlit – displays model outputs and visualizations
 - **Backend:** FastAPI – exposes endpoints to interact with the model and database
 - **Database:** PostgreSQL – stores marketing and prediction data
@@ -43,23 +45,28 @@ Many businesses struggle with [state the marketing problem]. Our solution provid
 ## Live Demo Flow
 
 ### 1. Introduction (by PM)
+
 - Product and problem statement
 - MVP and roadmap
 - Architecture diagram
 
 ### 2. Frontend (by Frontend Dev)
+
 - Navigate through Streamlit UI
 - Visualizations, predictions, and user interaction
 
 ### 3. Backend (by Backend Dev)
+
 - FastAPI endpoints and Swagger UI
 - Data exchange flow with frontend/model
 
 ### 4. Model (by Data Scientist)
+
 - Model type, performance metrics
 - Example prediction output
 
 ### 5. Database (by DB Dev)
+
 - Show schema design
 - Example data insert/query
 
