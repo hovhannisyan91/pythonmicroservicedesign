@@ -10,7 +10,7 @@ The `Dockerfile` defines the environment for the Jupyter Notebook container. Bel
 
 ```dockerfile
 # filepath: myapp/notebook/Dockerfile
-FROM python:3.10-slim-bullseye
+FROM python:3.12-slim-bullseye
 
 RUN apt-get update && apt-get install -y \
     build-essential libpq-dev libfreetype6-dev libpng-dev libjpeg-dev \
