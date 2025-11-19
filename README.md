@@ -8,10 +8,12 @@ This repository contains the following branches:
 <!-- - **db-setup**: Contains:
   - the database setup and configuration.
   - ETL (Extract, Transform, Load) process implementation
-- **gh-pages:** Deploying the documentation.
+
 - **backend:** Contains the backend with `FastAPI`.
 - **front**: Contains the Streamlit frontend application. -->
+- **gh-pages:** Deploying the documentation.
 - **jupyter-notebook**: Contains the Jupyter Notebook container setup.
+
 
 ## Presentation 
 
