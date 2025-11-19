@@ -4,7 +4,7 @@ This Demo project will show you how to use docker and docker compose to create a
 
 ## How it works?
 
-<a href="./presentation.html" target="_blank" rel="noopener noreferrer">End-to-End tutorial </a>
+<a href="https://hovhannisyan91.github.io/DS223_Group_Project/#/title-slide" target="_blank" rel="noopener noreferrer">End-to-End tutorial </a>
 
 ## Services
 
