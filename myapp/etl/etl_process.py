@@ -19,6 +19,7 @@ from loguru import logger
 import random
 from Database.models import *
 from Database.database import engine, Base
+import os
 from Database.data_generator import (
     generate_customer,
     generate_product,
@@ -43,14 +44,14 @@ NUMBER_OF_ORDERS = 200
 # -----------------------------------------------------
 
 # Generate Employee Data
-employees = pd.DataFrame([generate_employee(employee_id) for employee_id in range(NUMBER_OF_EMPLOYEES)])
+employees = pd.DataFrame([generate_employee(employee_id) for employee_id in range(1, NUMBER_OF_EMPLOYEES + 1)])
 logger.info("Employee Data")
 logger.info(employees.head(1))
 employees.to_csv("data/employees.csv", index=False)
 logger.info(f"Employee data saved to CSV: {employees.shape}")
 
 # Generate Customer Data
-customers = pd.DataFrame([generate_customer(customer_id) for customer_id in range(NUMBER_OF_CUSTOMERS)])
+customers = pd.DataFrame([generate_customer(customer_id) for customer_id in range(1, NUMBER_OF_CUSTOMERS + 1)])
 logger.info("Customer Data")
 logger.info(customers.head(1))
 customers.to_csv("data/customers.csv", index=False)
@@ -64,7 +65,7 @@ products.to_csv("data/products.csv", index=False)
 logger.info(f"Product data saved to CSV: {products.shape}")
 
 # Generate Order Data
-orders = pd.DataFrame([generate_orders(order_id) for order_id in range(NUMBER_OF_ORDERS)])
+orders = pd.DataFrame([generate_orders(order_id) for order_id in range(1, NUMBER_OF_ORDERS + 1)])
 logger.info("Order Data")
 logger.info(orders.head(1))
 orders.to_csv("data/orders.csv", index=False)
@@ -111,6 +112,7 @@ def load_csv_to_table(table_name: str, csv_path: str) -> None:
 # Get all CSV file paths
 folder_path = "data/*.csv"
 files = glob.glob(folder_path)
+files = sorted(files, key=os.path.getmtime)
 base_names = [path.splitext(path.basename(file))[0] for file in files]
 
 # Load data from CSV files into respective tables

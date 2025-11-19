@@ -2,7 +2,7 @@ services:
 
   db:
     container_name: postgresql_db
-    image: postgres
+    image: postgres:17
     restart: always
     ports:
       - 5432:5432
@@ -30,6 +30,7 @@ services:
       - ./pgadmin_data:/var/lib/pgadmin  # Persisting pgAdmin configuration and sessions
     depends_on: 
       - db
+
   etl:
     container_name: etl
     build:
