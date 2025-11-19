@@ -12,6 +12,9 @@ app = FastAPI(title="FastAPI, Docker, and Traefik")
 
 # GET Request - Retrieve an employee by ID
 @app.get("/employees/{employee_id}", response_model=Employee)
+#TODO
+#!cajijdasjdskaj
+
 async def get_employee(employee_id: int, db: Session = Depends(get_db)):
     """
     Retrieve an employee by their unique ID.

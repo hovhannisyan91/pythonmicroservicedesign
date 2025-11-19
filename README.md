@@ -17,11 +17,12 @@ This repository contains the following branches:
 ## Remote Connectore
 
 1. Install `dev container` extension in VS code. 
-2. run `docker compose up --build` to build the containers.
-3. Click on the Dev Container icon in the bottom left corner of VS code.
-4. ![alt text](image.png)
-5. Select a folder (if in `root` ../ or `app` or `api`).
-6. ![alt text](image-1.png)
+2. ![alt text](image-2.png)
+3. run `docker compose up --build` to build the containers.
+4. Click on the Dev Container icon in the bottom left corner of VS code.
+5. ![alt text](image.png)
+6. Select a folder (if in `root` ../ or `app` or `api`).
+7. ![alt text](image-1.png)
 
 
 
