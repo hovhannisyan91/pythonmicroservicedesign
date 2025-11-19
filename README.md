@@ -5,12 +5,12 @@
 This repository contains the following branches:
 
 - **main**: The primary branch containing the complete project setup.
-- **db-setup**: Contains:
+<!-- - **db-setup**: Contains:
   - the database setup and configuration.
   - ETL (Extract, Transform, Load) process implementation
 - **gh-pages:** Deploying the documentation.
 - **backend:** Contains the backend with `FastAPI`.
-- **front**: Contains the Streamlit frontend application.
+- **front**: Contains the Streamlit frontend application. -->
 - **jupyter-notebook**: Contains the Jupyter Notebook container setup.
 
 ## Presentation 
