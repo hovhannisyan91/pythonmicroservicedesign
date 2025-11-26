@@ -44,10 +44,6 @@ CMD ["bash", "-c", "python generate_predictions.py & jupyter notebook --ip=0.0.0
 This is the `docker-compose.yaml` file used to define and run the multi-container Docker applications.
 
 ```yaml
-
-
-version: "3.8"
-
 services:
   notebook:
     build:
